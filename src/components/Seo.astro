@@ -1,0 +1,72 @@
+---
+import { casa, site } from "../data/casa";
+import type { ImageMetadata } from "astro";
+
+type Breadcrumb = { name: string; path: string };
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogImage?: ImageMetadata;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: Breadcrumb[];
+}
+
+const {
+  title,
+  description,
+  path = "/",
+  ogImage,
+  jsonLd,
+  breadcrumbs = [],
+} = Astro.props;
+
+const canonical = new URL(path, site.url).toString();
+const ogImageUrl = ogImage
+  ? new URL(ogImage.src, site.url).toString()
+  : new URL("/favicon.svg", site.url).toString();
+
+const breadcrumbLd =
+  breadcrumbs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: new URL(item.path, site.url).toString(),
+        })),
+      }
+    : null;
+
+const graphs = [
+  ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+  ...(breadcrumbLd ? [breadcrumbLd] : []),
+];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:site_name" content={casa.nombre} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+{
+  graphs.map((data) => (
+    <script type="application/ld+json" set:html={JSON.stringify(data)} />
+  ))
+}

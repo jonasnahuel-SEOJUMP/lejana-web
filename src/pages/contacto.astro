@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { casa, whatsappUrl } from "../data/casa";
+import { lodgingBusinessLd } from "../lib/schema";
+import hero from "../assets/fotos/exterior-frente-montana.jpg";
+
+const title = "Contacto y reserva | Lejana Casa de Montaña, Lago Puelo";
+const description =
+  "Consultá disponibilidad de esta cabaña en Lago Puelo por WhatsApp, o reservá por Airbnb y Booking. Instagram: @lejanacasaenlagopuelo.";
+
+const wa = whatsappUrl();
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/contacto"
+  ogImage={hero}
+  jsonLd={lodgingBusinessLd()}
+  breadcrumbs={[
+    { name: "Inicio", path: "/" },
+    { name: "Contacto", path: "/contacto" },
+  ]}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 md:py-16">
+    <h1 class="text-3xl md:text-5xl">Contacto / reservar</h1>
+    <p class="mt-4 text-lg text-tierra/90">
+      Para consultar disponibilidad en Lejana Casa de Montaña (Lago Puelo), lo más directo
+      es WhatsApp. También podés reservar por Airbnb o Booking, o seguirnos en Instagram.
+    </p>
+
+    <section class="mt-10 border border-crema-oscura bg-crema/70 p-6 md:p-8">
+      <h2 class="text-2xl">WhatsApp</h2>
+      <p class="mt-3 text-tierra/90">
+        Mensaje sugerido: “{casa.mensajeWhatsApp}”
+      </p>
+      {
+        wa ? (
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex rounded-sm bg-[#1f6b45] px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-[#185536]"
+          >
+            Abrir WhatsApp
+          </a>
+        ) : (
+          <>
+            <p class="todo-banner mt-4">
+              TODO: confirmar número de WhatsApp. Cuando esté, el botón abrirá el chat con
+              el mensaje prearmado.
+            </p>
+            <span class="mt-6 inline-flex cursor-not-allowed rounded-sm bg-bosque/40 px-5 py-3 text-sm font-semibold text-crema">
+              WhatsApp (pendiente)
+            </span>
+          </>
+        )
+      }
+      {
+        casa.beneficioReservaDirecta ? (
+          <p class="mt-6 text-tierra/90">{casa.beneficioReservaDirecta}</p>
+        ) : (
+          <p class="todo-banner mt-6">
+            TODO: confirmar beneficio por reserva directa (salida más tarde o leña de
+            regalo), sin bajar el precio respecto de las plataformas
+          </p>
+        )
+      }
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl">También en plataformas</h2>
+      <p class="mt-3 text-tierra/90">
+        Si preferís reservar por Airbnb o Booking, usá estos links oficiales.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href={casa.puntajes.airbnb.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex rounded-sm border border-bosque/40 px-5 py-3 text-sm font-semibold text-bosque-oscuro no-underline hover:bg-crema-oscura"
+        >
+          Ver en Airbnb
+        </a>
+        <a
+          href={casa.puntajes.booking.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex rounded-sm border border-bosque/40 px-5 py-3 text-sm font-semibold text-bosque-oscuro no-underline hover:bg-crema-oscura"
+        >
+          Ver en Booking
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl">Datos de contacto</h2>
+      <ul class="mt-4 list-none space-y-2 p-0 text-tierra/90">
+        <li><strong>{casa.nombre}</strong></li>
+        <li>{casa.direccion.completa}</li>
+        <li>
+          Email:{" "}
+          {casa.contacto.email ?? "TODO: confirmar email"}
+        </li>
+        <li>
+          Instagram:{" "}
+          {casa.contacto.instagram ?? "TODO: confirmar Instagram"}
+        </li>
+        <li>
+          Precios y mínimo de noches:{" "}
+          {casa.precios ?? "TODO: confirmar precios por temporada y mínimo de noches"}
+        </li>
+        <li>
+          Formas de pago:{" "}
+          {casa.formasDePago ?? "TODO: confirmar formas de pago"}
+        </li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

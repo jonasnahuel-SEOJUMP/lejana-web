@@ -1,0 +1,21 @@
+# Lejana Casa de Montaña — permitir indexación web y crawlers de IA
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# TODO: actualizar Sitemap cuando el dominio .com.ar esté confirmado
+Sitemap: https://lejana.com.ar/sitemap-index.xml

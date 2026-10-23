@@ -1,0 +1,68 @@
+---
+import { casa, nav } from "../data/casa";
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="border-b border-crema-oscura/80 bg-crema/90 backdrop-blur-sm sticky top-0 z-40">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:py-4">
+    <a href="/" class="group min-w-0 no-underline">
+      <span
+        class="block font-display text-lg leading-tight text-bosque-oscuro transition group-hover:text-madera md:text-xl"
+      >
+        {casa.nombre}
+      </span>
+      <span class="block text-xs text-madera md:text-sm">Lago Puelo · Patagonia</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden lg:block">
+      <ul class="flex flex-wrap items-center gap-1">
+        {
+          nav.map((item) => {
+            const hrefNorm = item.href.replace(/\/$/, "") || "/";
+            const active = pathname === hrefNorm;
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    "rounded-sm px-3 py-2 text-sm no-underline transition",
+                    active
+                      ? "bg-bosque !text-crema"
+                      : "text-tierra hover:bg-crema-oscura hover:text-bosque-oscuro",
+                  ]}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <details class="relative lg:hidden">
+      <summary
+        class="cursor-pointer list-none rounded-sm border border-bosque/30 bg-crema px-3 py-2 text-sm text-bosque-oscuro"
+      >
+        Menú
+      </summary>
+      <ul
+        class="absolute right-0 mt-2 w-56 rounded-sm border border-crema-oscura bg-crema p-2 shadow-lg"
+      >
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block rounded-sm px-3 py-2 text-sm text-tierra no-underline hover:bg-crema-oscura"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,87 @@
+---
+import { casa, napTelefonoDisplay, nav } from "../data/casa";
+---
+
+<footer class="mt-20 border-t border-crema-oscura bg-bosque-oscuro text-crema">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3">
+    <div>
+      <p class="font-display text-xl text-crema">{casa.nombre}</p>
+      <p class="mt-3 text-sm leading-relaxed text-crema/90">
+        {casa.direccion.completa}
+      </p>
+      <p class="mt-2 text-sm text-crema/90">
+        Tel. / WhatsApp: {napTelefonoDisplay()}
+      </p>
+      {
+        !casa.contacto.whatsapp && (
+          <p class="todo-banner mt-3 text-tierra">TODO: confirmar teléfono / WhatsApp</p>
+        )
+      }
+    </div>
+
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-wide text-crema/70">Explorar</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-crema no-underline hover:text-crema-oscura">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-wide text-crema/70">Reservar</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li>
+          <a
+            href={casa.puntajes.airbnb.url}
+            class="text-crema no-underline hover:text-crema-oscura"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Airbnb
+          </a>
+        </li>
+        <li>
+          <a
+            href={casa.puntajes.booking.url}
+            class="text-crema no-underline hover:text-crema-oscura"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Booking
+          </a>
+        </li>
+        <li>
+          <a href="/contacto" class="text-crema no-underline hover:text-crema-oscura">
+            Contacto / WhatsApp
+          </a>
+        </li>
+      </ul>
+      {
+        casa.contacto.instagram ? (
+          <p class="mt-4 text-sm">
+            <a
+              href={casa.contacto.instagram}
+              class="text-crema no-underline hover:text-crema-oscura"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Instagram
+            </a>
+          </p>
+        ) : (
+          <p class="todo-banner mt-4 text-tierra">TODO: confirmar Instagram</p>
+        )
+      }
+    </div>
+  </div>
+  <div class="border-t border-crema/15 px-4 py-4 text-center text-xs text-crema/70">
+    © {new Date().getFullYear()} {casa.nombre} · Lago Puelo, Chubut
+  </div>
+</footer>

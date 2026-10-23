@@ -1,0 +1,5 @@
+# Referencia para Cloudflare Pages / Wrangler.
+# El deploy habitual es conectar el repo en el dashboard de Pages.
+name = "lejana-casa-de-montana"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "dist"

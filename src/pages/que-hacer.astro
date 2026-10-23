@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ZoomableImage from "../components/ZoomableImage.astro";
+import { casa } from "../data/casa";
+import { lodgingBusinessLd } from "../lib/schema";
+import parqueEntrada from "../assets/fotos/parque-nacional-entrada.jpg";
+import paisajeKayak from "../assets/fotos/paisaje-kayak.jpg";
+import paisajeVelero from "../assets/fotos/paisaje-lago-velero.jpg";
+import paisajeRioValle from "../assets/fotos/paisaje-rio-valle.jpg";
+
+const title = "Qué hacer en Lago Puelo | Guía desde una cabaña a 2 km del Parque";
+const description =
+  "Qué hacer en Lago Puelo en verano e invierno: Parque Nacional, lago, trekking y Comarca Andina. Base en Lejana Casa de Montaña, a 2 km del Parque.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/que-hacer"
+  ogImage={parqueEntrada}
+  jsonLd={lodgingBusinessLd()}
+  breadcrumbs={[
+    { name: "Inicio", path: "/" },
+    { name: "Qué hacer", path: "/que-hacer" },
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <h1 class="text-3xl md:text-5xl">Qué hacer en Lago Puelo</h1>
+    <p class="mt-4 max-w-2xl text-lg text-tierra/90">
+      En Lago Puelo se puede combinar lago, trekking y Parque Nacional. Desde Lejana Casa de
+      Montaña estás a {casa.distancias.parqueNacionalKm} km del Parque Nacional: una base
+      cómoda para verano e invierno en la Comarca Andina.
+    </p>
+
+    <div class="mt-10 overflow-hidden">
+      <ZoomableImage
+        image={parqueEntrada}
+        alt="Portal de acceso al Parque Nacional Lago Puelo"
+        widths={[640, 1024, 1400]}
+        sizes="100vw"
+        class="max-h-[26rem] w-full object-cover"
+        loading="eager"
+      />
+    </div>
+
+    <section class="mt-14" aria-labelledby="verano">
+      <h2 id="verano" class="text-2xl md:text-3xl">En verano</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        El verano invita al lago, al trekking y a días largos al aire libre en la Comarca
+        Andina.
+      </p>
+      <ul class="mt-6 list-disc space-y-2 pl-5 text-tierra/90">
+        <li>Visitar el Parque Nacional Lago Puelo (senderos y naturaleza a minutos).</li>
+        <li>Días de lago: descanso, paisajes y actividades acuáticas según la temporada.</li>
+        <li>Trekking corto o medio en los alrededores del valle.</li>
+        <li>Kayak u otras salidas al agua cuando el clima acompaña.</li>
+        <li>Volver a la casa: quincho con parrilla, hamaca y reposeras en el bosque.</li>
+      </ul>
+      <ul class="mt-8 grid list-none gap-4 p-0 sm:grid-cols-3">
+        <li class="overflow-hidden bg-crema-oscura">
+          <ZoomableImage
+            image={paisajeKayak}
+            alt="Kayak en el Lago Puelo cerca de Lejana Casa de Montaña"
+            widths={[400, 700]}
+            sizes="(max-width: 640px) 100vw, 33vw"
+            class="h-48 w-full object-cover"
+          />
+        </li>
+        <li class="overflow-hidden bg-crema-oscura">
+          <ZoomableImage
+            image={paisajeVelero}
+            alt="Velero en el Lago Puelo con montañas al fondo"
+            widths={[400, 700]}
+            sizes="(max-width: 640px) 100vw, 33vw"
+            class="h-48 w-full object-cover"
+          />
+        </li>
+        <li class="overflow-hidden bg-crema-oscura">
+          <ZoomableImage
+            image={paisajeRioValle}
+            alt="Río y valle con montañas nevadas cerca de Lago Puelo"
+            widths={[400, 700]}
+            sizes="(max-width: 640px) 100vw, 33vw"
+            class="h-48 w-full object-cover"
+          />
+        </li>
+      </ul>
+    </section>
+
+    <section class="mt-14" aria-labelledby="invierno">
+      <h2 id="invierno" class="text-2xl md:text-3xl">En invierno</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        El invierno también suma: el Parque Nacional y la zona ganan visitas en busca de
+        paz y paisajes fríos.
+      </p>
+      <ul class="mt-6 list-disc space-y-2 pl-5 text-tierra/90">
+        <li>Recorridos más tranquilos por el Parque Nacional Lago Puelo.</li>
+        <li>
+          Descanso en una casa nueva con {casa.calefaccion?.toLowerCase() ?? "calefacción"},
+          lejos del ruido.
+        </li>
+        <li>Base cómoda para explorar Lago Puelo y la Comarca Andina.</li>
+      </ul>
+    </section>
+
+    <section class="mt-14" aria-labelledby="familias">
+      <h2 id="familias" class="text-2xl md:text-3xl">Para familias y parejas</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        La cabaña entra hasta 5 personas y está pensada para quienes buscan naturaleza y
+        descanso, no fiestas ni ruido.
+      </p>
+      <p class="mt-4 max-w-2xl text-tierra/90">
+        Temas que se repiten en las reseñas de las plataformas: paz, desconectar, lugar
+        mágico, casa cómoda y la atención de {casa.anfitriona}.
+      </p>
+    </section>
+
+    <p class="mt-12">
+      <a
+        href="/contacto"
+        class="font-semibold text-bosque underline-offset-2 hover:underline"
+      >
+        Consultar fechas para tu viaje
+      </a>
+    </p>
+  </div>
+</BaseLayout>

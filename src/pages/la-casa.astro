@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ZoomableImage from "../components/ZoomableImage.astro";
+import { casa } from "../data/casa";
+import { lodgingBusinessLd } from "../lib/schema";
+import interiorSalon from "../assets/fotos/interior-salon.jpg";
+import exteriorFrente from "../assets/fotos/exterior-frente-montana.jpg";
+import interiorCocina from "../assets/fotos/interior-cocina.jpg";
+import dormitorioMatri from "../assets/fotos/dormitorio-matrimonial.jpg";
+import dormitorioCucheta from "../assets/fotos/dormitorio-cucheta.jpg";
+import hidromasajeVista from "../assets/fotos/hidromasaje-vista.jpg";
+import interiorBano from "../assets/fotos/interior-bano.jpg";
+import interiorSalamandra from "../assets/fotos/interior-salamandra.jpg";
+import exteriorPorche from "../assets/fotos/exterior-porche.jpg";
+
+const title = "La casa | Cabaña para 5 en Lago Puelo con quincho e hidromasaje";
+const description =
+  "Lejana Casa de Montaña: 120 m², 2 dormitorios, quincho de 45 m², hidromasaje en suite y salamandra. Casa nueva en bosque nativo, Lago Puelo.";
+
+const espacios = [
+  {
+    image: dormitorioMatri,
+    alt: "Dormitorio con cama matrimonial",
+    label: "Dormitorio matrimonial",
+  },
+  {
+    image: dormitorioCucheta,
+    alt: "Dormitorio con cucheta y cama individual",
+    label: "Segundo dormitorio",
+  },
+  {
+    image: hidromasajeVista,
+    alt: "Hidromasaje interior con vista al bosque",
+    label: "Hidromasaje en suite",
+  },
+  {
+    image: interiorCocina,
+    alt: "Cocina equipada de la cabaña",
+    label: "Cocina",
+  },
+  {
+    image: interiorBano,
+    alt: "Baño de Lejana Casa de Montaña",
+    label: "Baño",
+  },
+  {
+    image: interiorSalamandra,
+    alt: "Salamandra a leña en el living",
+    label: "Calefacción a leña",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/la-casa"
+  ogImage={interiorSalon}
+  jsonLd={lodgingBusinessLd()}
+  breadcrumbs={[
+    { name: "Inicio", path: "/" },
+    { name: "La casa", path: "/la-casa" },
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <h1 class="text-3xl md:text-5xl">La casa en Lago Puelo</h1>
+    <p class="mt-4 max-w-2xl text-lg text-tierra/90">
+      Lejana Casa de Montaña es una casa nueva de {casa.superficieM2} m² para hasta{" "}
+      {casa.capacidad} personas, en un claro en medio del bosque nativo de Lago Puelo, con
+      todo lo necesario para una estadía cómoda.
+    </p>
+    <p class="mt-3 max-w-2xl text-tierra/90">
+      {casa.quincho.descripcion} También hay bañera con hidromasaje en suite y{" "}
+      {casa.calefaccion?.toLowerCase()}.
+    </p>
+
+    <div class="mt-10 overflow-hidden">
+      <ZoomableImage
+        image={interiorSalon}
+        alt="Living y comedor de Lejana Casa de Montaña en Lago Puelo"
+        widths={[640, 1024, 1400]}
+        sizes="100vw"
+        class="max-h-[28rem] w-full object-cover"
+        loading="eager"
+      />
+    </div>
+
+    <section class="mt-14" aria-labelledby="espacios">
+      <h2 id="espacios" class="text-2xl md:text-3xl">Espacios y camas</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        Hay {casa.dormitorios} dormitorios, {casa.camas.resumen} y {casa.banos} baño,
+        pensado para familias o parejas que buscan descanso. Tocá una foto para ampliarla.
+      </p>
+      <ul class="mt-6 grid list-none gap-4 p-0 sm:grid-cols-2">
+        <li class="border border-crema-oscura bg-crema/50 p-5">
+          Superficie: {casa.superficieM2} m²
+        </li>
+        <li class="border border-crema-oscura bg-crema/50 p-5">
+          Terreno: {casa.terrenoM2.toLocaleString("es-AR")} m² de bosque nativo
+        </li>
+        <li class="border border-crema-oscura bg-crema/50 p-5">
+          Capacidad: {casa.capacidad} personas
+        </li>
+        <li class="border border-crema-oscura bg-crema/50 p-5">
+          Dormitorios: {casa.dormitorios}
+        </li>
+      </ul>
+      <ul class="mt-8 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          espacios.map((item) => (
+            <li class="overflow-hidden bg-crema-oscura">
+              <ZoomableImage
+                image={item.image}
+                alt={item.alt}
+                widths={[400, 700]}
+                sizes="(max-width: 640px) 100vw, 33vw"
+                class="h-48 w-full object-cover"
+              />
+              <p class="p-3 text-sm text-tierra/90">{item.label}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-14" aria-labelledby="servicios">
+      <h2 id="servicios" class="text-2xl md:text-3xl">Servicios</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        La casa tiene lo esencial para cocinar, estar afuera en el quincho y descansar
+        sin renunciar al confort.
+      </p>
+      <ul class="mt-6 grid list-disc gap-2 pl-5 sm:grid-cols-2">
+        {casa.servicios.map((s) => <li>{s}</li>)}
+      </ul>
+      <p class="mt-4 text-tierra/90">Calefacción: {casa.calefaccion}</p>
+      <p class="mt-2 text-tierra/90">{casa.hidromasaje.descripcion}</p>
+    </section>
+
+    <section class="mt-14 grid gap-8 md:grid-cols-2 md:items-start">
+      <div>
+        <h2 class="text-2xl md:text-3xl">Reglas de la casa</h2>
+        <p class="mt-3 text-tierra/90">
+          No se aceptan mascotas, no se fuma, no se hacen fiestas y no hay cunas.
+        </p>
+        <ul class="mt-6 list-disc space-y-2 pl-5">
+          <li>Check-in desde las {casa.reglas.checkInDesde}</li>
+          <li>
+            Check-out:{" "}
+            {casa.reglas.checkOut ?? "TODO: confirmar horario de check-out"}
+          </li>
+          <li>Mascotas: no</li>
+          <li>Fumar: no</li>
+          <li>Fiestas: no</li>
+        </ul>
+      </div>
+      <ZoomableImage
+        image={exteriorFrente}
+        alt="Fachada de Lejana Casa de Montaña con la montaña detrás"
+        widths={[600, 900]}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        class="w-full object-cover"
+      />
+    </section>
+
+    <div class="mt-10 overflow-hidden">
+      <ZoomableImage
+        image={exteriorPorche}
+        alt="Porche con mecedoras en la entrada de la cabaña"
+        widths={[800, 1200]}
+        sizes="100vw"
+        class="max-h-80 w-full object-cover"
+      />
+    </div>
+
+    <p class="mt-12">
+      <a href="/contacto" class="font-semibold text-bosque underline-offset-2 hover:underline"
+        >Consultar disponibilidad</a
+      >
+    </p>
+  </div>
+</BaseLayout>

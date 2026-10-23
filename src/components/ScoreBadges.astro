@@ -1,0 +1,55 @@
+---
+import { casa } from "../data/casa";
+
+const airbnbLabel = `${casa.puntajes.airbnb.score} sobre ${casa.puntajes.airbnb.scoreSobre}`;
+const bookingLabel = `${casa.puntajes.booking.score} sobre ${casa.puntajes.booking.scoreSobre}`;
+---
+
+<section aria-labelledby="puntajes-title" class="mx-auto max-w-6xl px-4">
+  <h2 id="puntajes-title" class="text-2xl md:text-3xl">Lo que dicen en las plataformas</h2>
+  <p class="mt-3 max-w-2xl text-tierra/90">
+    En las plataformas destacan la paz, el entorno y la atención de {casa.anfitriona}.
+    Mostramos solo puntajes públicos de Airbnb (sobre 5) y Booking (sobre 10), sin inventar
+    reseñas.
+  </p>
+  <div class="mt-8 grid gap-6 sm:grid-cols-2">
+    <a
+      href={casa.puntajes.airbnb.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block border border-crema-oscura bg-crema/60 p-6 no-underline transition hover:border-bosque/40"
+      aria-label={`Airbnb: ${airbnbLabel}. ${casa.puntajes.airbnb.insignia}`}
+    >
+      <p class="text-sm uppercase tracking-wide text-madera">Airbnb</p>
+      <p class="mt-2 font-display text-4xl text-bosque-oscuro">
+        {casa.puntajes.airbnb.score}
+        <span class="text-2xl text-tierra/70"> / {casa.puntajes.airbnb.scoreSobre}</span>
+      </p>
+      <p
+        class="mt-2 text-lg tracking-[0.2em] text-madera"
+        aria-hidden="true"
+        title="5 estrellas"
+      >
+        ★★★★★
+      </p>
+      <p class="mt-2 text-sm text-tierra">{casa.puntajes.airbnb.insignia}</p>
+    </a>
+    <a
+      href={casa.puntajes.booking.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block border border-crema-oscura bg-crema/60 p-6 no-underline transition hover:border-bosque/40"
+      aria-label={`Booking: ${bookingLabel}`}
+    >
+      <p class="text-sm uppercase tracking-wide text-madera">Booking</p>
+      <p class="mt-2 font-display text-4xl text-bosque-oscuro">
+        {casa.puntajes.booking.score}
+        <span class="text-2xl text-tierra/70"> / {casa.puntajes.booking.scoreSobre}</span>
+      </p>
+      <p class="mt-2 text-sm text-tierra">
+        Atención {casa.puntajes.booking.atencion} · Ubicación{" "}
+        {casa.puntajes.booking.ubicacion}
+      </p>
+    </a>
+  </div>
+</section>

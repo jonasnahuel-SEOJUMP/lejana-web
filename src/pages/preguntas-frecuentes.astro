@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { faqs } from "../data/casa";
+import { faqPageLd, lodgingBusinessLd } from "../lib/schema";
+import hero from "../assets/fotos/exterior-frente-montana.jpg";
+
+const title = "Preguntas frecuentes | Cabaña en Lago Puelo, Lejana Casa de Montaña";
+const description =
+  "¿Cuántas personas entran? ¿Hay hidromasaje? ¿Mascotas? ¿Distancia al Parque Nacional? Respuestas claras sobre Lejana Casa de Montaña en Lago Puelo.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/preguntas-frecuentes"
+  ogImage={hero}
+  jsonLd={[lodgingBusinessLd(), faqPageLd()]}
+  breadcrumbs={[
+    { name: "Inicio", path: "/" },
+    { name: "Preguntas frecuentes", path: "/preguntas-frecuentes" },
+  ]}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 md:py-16">
+    <h1 class="text-3xl md:text-5xl">Preguntas frecuentes</h1>
+    <p class="mt-4 text-lg text-tierra/90">
+      Respuestas directas sobre capacidad, hidromasaje, quincho, mascotas, distancias al
+      Parque Nacional Lago Puelo y cómo reservar Lejana Casa de Montaña.
+    </p>
+
+    <div class="mt-10 space-y-4">
+      {
+        faqs.map((item) => (
+          <details class="group border border-crema-oscura bg-crema/60 open:bg-crema">
+            <summary class="cursor-pointer list-none px-5 py-4 font-display text-lg text-bosque-oscuro marker:content-none">
+              <span class="flex items-start justify-between gap-4">
+                <span>{item.pregunta}</span>
+                <span class="text-madera transition group-open:rotate-45" aria-hidden="true">
+                  +
+                </span>
+              </span>
+            </summary>
+            <div class="border-t border-crema-oscura px-5 py-4 text-tierra/90">
+              <p>{item.respuesta}</p>
+              {item.pendiente && (
+                <p class="todo-banner mt-3">Dato pendiente de confirmación con el anfitrión</p>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="mt-12">
+      ¿No está tu duda?{" "}
+      <a href="/contacto" class="font-semibold text-bosque underline-offset-2 hover:underline"
+        >Escribinos</a
+      >.
+    </p>
+  </div>
+</BaseLayout>

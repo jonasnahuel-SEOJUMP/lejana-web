@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bosque: #2f4a38;
+  --color-bosque-oscuro: #1e3226;
+  --color-madera: #6b4f3a;
+  --color-madera-clara: #8b6b4f;
+  --color-crema: #f5f0e6;
+  --color-crema-oscura: #e8e0d0;
+  --color-tierra: #3d2e22;
+  --color-musgo: #5a7a62;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-tierra);
+    /* El paisaje suave lo aporta SoftBackdrop; acá solo un respaldo crema. */
+    background-color: var(--color-crema);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-bosque-oscuro);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-madera-clara);
+    outline-offset: 3px;
+  }
+}
+
+.todo-banner {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  border-left: 3px solid var(--color-madera);
+  background: var(--color-crema-oscura);
+  font-size: 0.9rem;
+  color: var(--color-tierra);
+}

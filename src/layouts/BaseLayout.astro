@@ -1,0 +1,54 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import SoftBackdrop from "../components/SoftBackdrop.astro";
+import PhotoLightbox from "../components/PhotoLightbox.astro";
+import Seo from "../components/Seo.astro";
+import "../styles/global.css";
+import type { ImageMetadata } from "astro";
+import { site } from "../data/casa";
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogImage?: ImageMetadata;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: { name: string; path: string }[];
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <Seo {...props} />
+  </head>
+  <body class="relative min-h-screen">
+    <SoftBackdrop />
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-crema focus:px-3 focus:py-2"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="contenido" class="relative z-0">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <PhotoLightbox />
+  </body>
+</html>
