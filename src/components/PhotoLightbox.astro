@@ -1,6 +1,7 @@
 ---
 /**
  * Lightbox global: cualquier botón/enlace con data-lightbox-src abre la foto ampliada.
+ * Se cierra con el botón X, Escape, o tocando la foto / el fondo.
  */
 ---
 
@@ -9,24 +10,31 @@
   class="photo-lightbox m-0 max-h-none max-w-none border-0 bg-transparent p-0 text-crema backdrop:bg-bosque-oscuro/90"
   aria-label="Foto ampliada"
 >
-  <div class="flex min-h-screen w-screen flex-col items-center justify-center px-3 py-14 md:px-8">
+  <div
+    class="photo-lightbox__panel relative flex min-h-[100dvh] w-screen flex-col items-center justify-center px-3 pb-10 pt-16 md:px-8"
+    data-lightbox-dismiss
+  >
     <button
       type="button"
-      class="photo-lightbox__close absolute right-3 top-3 z-10 rounded-sm bg-crema px-3 py-2 text-sm font-semibold text-bosque-oscuro md:right-6 md:top-6"
+      class="photo-lightbox__close absolute right-3 top-3 z-20 flex min-h-12 min-w-12 items-center justify-center rounded-sm bg-crema px-4 py-3 text-base font-semibold text-bosque-oscuro shadow-md md:right-6 md:top-6"
       data-lightbox-close
+      aria-label="Cerrar foto"
     >
-      Cerrar
+      Cerrar ✕
     </button>
     <img
       data-lightbox-image
       src=""
       alt=""
-      class="max-h-[85vh] max-w-full object-contain shadow-lg"
+      class="max-h-[80dvh] max-w-full cursor-zoom-out object-contain shadow-lg"
     />
     <p
       data-lightbox-caption
       class="mt-4 max-w-3xl px-2 text-center text-sm text-crema/90"
     >
+    </p>
+    <p class="mt-2 text-center text-xs text-crema/70">
+      Tocá la foto o afuera para cerrar
     </p>
   </div>
 </dialog>
@@ -39,6 +47,11 @@
   .photo-lightbox::backdrop {
     background: color-mix(in srgb, var(--color-bosque-oscuro) 90%, transparent);
   }
+
+  :global(body.lightbox-open .whatsapp-fab) {
+    visibility: hidden;
+    pointer-events: none;
+  }
 </style>
 
 <script>
@@ -46,20 +59,58 @@
   if (!w.__lejanaLightboxReady) {
     w.__lejanaLightboxReady = true;
 
-    document.addEventListener("click", (event) => {
+    function getDialog(): HTMLDialogElement | null {
       const dialog = document.getElementById("photo-lightbox");
-      if (!(dialog instanceof HTMLDialogElement)) return;
+      return dialog instanceof HTMLDialogElement ? dialog : null;
+    }
 
+    function getParts(dialog: HTMLDialogElement) {
       const image = dialog.querySelector("[data-lightbox-image]");
       const caption = dialog.querySelector("[data-lightbox-caption]");
-      if (!(image instanceof HTMLImageElement) || !(caption instanceof HTMLElement)) return;
+      if (!(image instanceof HTMLImageElement) || !(caption instanceof HTMLElement)) {
+        return null;
+      }
+      return { image, caption };
+    }
 
+    function openLightbox(src: string, alt: string) {
+      const dialog = getDialog();
+      if (!dialog) return;
+      const parts = getParts(dialog);
+      if (!parts) return;
+      parts.image.src = src;
+      parts.image.alt = alt;
+      parts.caption.textContent = alt;
+      if (!dialog.open) {
+        dialog.showModal();
+        document.body.classList.add("lightbox-open");
+      }
+    }
+
+    function closeLightbox() {
+      const dialog = getDialog();
+      if (!dialog?.open) return;
+      dialog.close();
+    }
+
+    document.addEventListener("click", (event) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
 
       if (target.closest("[data-lightbox-close]")) {
-        dialog.close();
+        event.preventDefault();
+        closeLightbox();
         return;
+      }
+
+      const dialog = getDialog();
+      if (dialog?.open) {
+        // Cerrar al tocar fondo, imagen o el panel (salvo el botón, ya manejado)
+        if (target.closest("#photo-lightbox")) {
+          event.preventDefault();
+          closeLightbox();
+          return;
+        }
       }
 
       const trigger = target.closest("[data-lightbox-src]");
@@ -68,17 +119,13 @@
         const src = trigger.getAttribute("data-lightbox-src");
         const alt = trigger.getAttribute("data-lightbox-alt") ?? "";
         if (!src) return;
-        image.src = src;
-        image.alt = alt;
-        caption.textContent = alt;
-        if (!dialog.open) dialog.showModal();
+        openLightbox(src, alt);
       }
     });
 
-    document.addEventListener("click", (event) => {
-      const dialog = document.getElementById("photo-lightbox");
-      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return;
-      if (event.target === dialog) dialog.close();
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      closeLightbox();
     });
 
     document.addEventListener(
@@ -86,13 +133,12 @@
       (event) => {
         if (!(event.target instanceof HTMLDialogElement)) return;
         if (event.target.id !== "photo-lightbox") return;
-        const image = event.target.querySelector("[data-lightbox-image]");
-        const caption = event.target.querySelector("[data-lightbox-caption]");
-        if (image instanceof HTMLImageElement) {
-          image.removeAttribute("src");
-          image.alt = "";
-        }
-        if (caption instanceof HTMLElement) caption.textContent = "";
+        document.body.classList.remove("lightbox-open");
+        const parts = getParts(event.target);
+        if (!parts) return;
+        parts.image.removeAttribute("src");
+        parts.image.alt = "";
+        parts.caption.textContent = "";
       },
       true,
     );
