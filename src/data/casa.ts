@@ -91,10 +91,9 @@ export const casa = {
   /** TODO: confirmar beneficio por reserva directa (no descuento vs plataformas) */
   beneficioReservaDirecta: null as string | null,
   contacto: {
-    /** TODO: confirmar WhatsApp (solo dígitos con código país, ej. 5492944...) */
-    whatsapp: null as string | null,
-    /** TODO: confirmar email */
-    email: null as string | null,
+    /** Solo dígitos con código país (wa.me). Confirmado: Lucía Parra. */
+    whatsapp: "5492235373395",
+    email: "lucia-parra@hotmail.com",
     instagram: "https://www.instagram.com/lejanacasaenlagopuelo/",
     /**
      * Link al pin correcto por coordenadas.
@@ -105,7 +104,7 @@ export const casa = {
   },
   mensajeWhatsApp:
     "Hola, quiero consultar disponibilidad en Lejana Casa de Montaña (Lago Puelo).",
-  anfitriona: "Lucía",
+  anfitriona: "Lucía Parra",
   puntajes: {
     airbnb: {
       /** Escala Airbnb: máximo 5 */
@@ -226,7 +225,9 @@ export function whatsappUrl(mensaje = casa.mensajeWhatsApp): string | null {
 }
 
 export function napTelefonoDisplay(): string {
-  return casa.contacto.whatsapp
-    ? `+${casa.contacto.whatsapp}`
-    : "TODO: confirmar teléfono / WhatsApp";
+  if (!casa.contacto.whatsapp) return "TODO: confirmar teléfono / WhatsApp";
+  // +54 9 223 537-3395
+  const d = casa.contacto.whatsapp;
+  if (d === "5492235373395") return "+54 9 223 537-3395";
+  return `+${d}`;
 }

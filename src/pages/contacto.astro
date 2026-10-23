@@ -97,10 +97,15 @@ const wa = whatsappUrl();
       <h2 class="text-2xl">Datos de contacto</h2>
       <ul class="mt-4 list-none space-y-2 p-0 text-tierra/90">
         <li><strong>{casa.nombre}</strong></li>
+        <li>Anfitriona: {casa.anfitriona}</li>
         <li>{casa.direccion.completa}</li>
         <li>
           Email:{" "}
-          {casa.contacto.email ?? "TODO: confirmar email"}
+          {casa.contacto.email ? (
+            <a href={`mailto:${casa.contacto.email}`}>{casa.contacto.email}</a>
+          ) : (
+            "TODO: confirmar email"
+          )}
         </li>
         <li>
           Instagram:{" "}
