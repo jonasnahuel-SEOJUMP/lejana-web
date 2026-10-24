@@ -24,7 +24,7 @@ Objetivo de la web: que la encuentren en Google y en los buscadores con IA (Chat
 
 La web NO tiene sistema de reservas ni pagos. El objetivo de conversión es el botón de WhatsApp. También tiene links a Airbnb y Booking para quien prefiera reservar por ahí.
 
-Al que reserva directo se le ofrece un beneficio (ej: salida más tarde o leña de regalo), no un precio más bajo que en las plataformas. TODO: confirmar el beneficio con mi tío.
+No publicar en la web beneficio por reserva directa; si existe, se habla solo con Lucía.
 
 ## Datos reales de la cabaña
 
@@ -33,14 +33,15 @@ Fuente: sus publicaciones en Airbnb y Booking (octubre 2026). Lo marcado como TO
 - Nombre oficial (usarlo SIEMPRE igual): Lejana Casa de Montaña
 - Dirección: El Cóndor 13030, 9211 Lago Puelo, Chubut, Argentina
 - Superficie: 120 m². Casa nueva.
-- Capacidad: 5 personas. 1 baño. Camas: 1 doble + 3 individuales.
-- Dormitorios: 2
-- Hidromasaje / jacuzzi: bañera con hidromasaje interior, en suite en la habitación. Se puede mencionar con naturalidad; no hace falta usarlo como único gancho.
-- Entorno: casa en un claro en medio del bosque nativo (1.800 m²), a unos 700 m de la Ruta 16, a mitad de camino entre el centro de Lago Puelo y el Parque Nacional. No hay patio delimitado; hay quincho de 45 m² con parrilla y mesa para 6.
+- Capacidad: 5 personas. 1 baño. Camas: 1 queen (matrimonial) + 3 individuales.
+- Dormitorios: 2 (uno con cama queen e hidromasaje para dos, en suite; el otro con tres individuales)
+- Hidromasaje / jacuzzi: bañera con hidromasaje interior para dos, en suite. Se puede mencionar con naturalidad; no hace falta usarlo como único gancho.
+- Entorno: casa en un claro en medio del bosque nativo (1.800 m²), a unos 700 m de la Ruta 16, a mitad de camino entre el centro de Lago Puelo y el Parque Nacional. Frondosos ejemplares de álamos y radales y otros árboles rodean la casa. Quincho de 45 m² con parrilla y mesa para 6.
 - Distancias: Parque Nacional Lago Puelo 2 km · Lago Puelo 3,2 km · restaurantes 1,6 km · El Bolsón 16 km · aeropuerto de Bariloche 145 km
 - Servicios: wifi, cocina equipada (heladera, horno, cafetera, pava eléctrica), bañera con hidromasaje (en suite), quincho de 45 m² con parrilla y mesa para 6, mesa de comedor interior y mesa exterior, hamaca paraguaya, reposeras, lavarropas, TV con streaming, ropa de cama y toallas; lugar para dejar hasta 4 autos al lado de la casa (sin cochera techada). No tiene patio delimitado ni espacio de trabajo dedicado.
-- Calefacción: TODO
-- Reglas: no se aceptan mascotas, no se fuma, no se hacen fiestas, no hay cunas. Check-in desde las 15:00. Check-out: TODO.
+- Calefacción: calefactor 6000 kcal en living, 2500 kcal en cada dormitorio, artefacto eléctrico en el baño, salamandra a leña en el living
+- Reglas: sí se aceptan mascotas; no se fuma; no se hacen fiestas; no hay cunas. Check-in y check-out: 10:00 o 17:00 (a coordinar).
+- Cómo llegar desde Bariloche: Ruta 40 hasta El Bolsón (~130 km), luego Ruta 16 hasta Lago Puelo (~11 km). No hay sección “Desde El Bolsón” en la web.
 - Formas de pago: TODO (hoy en Booking dice solo efectivo)
 - Precios por temporada y mínimo de noches: TODO
 - WhatsApp, email, Instagram: TODO

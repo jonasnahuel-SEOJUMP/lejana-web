@@ -49,8 +49,10 @@ export function lodgingBusinessLd() {
       addressCountry: "AR",
     },
     amenityFeature,
-    checkinTime: casa.reglas.checkInDesde,
-    petsAllowed: false,
+    /** Horario más temprano posible; en la web se aclara que es 10:00 o 17:00 a coordinar. */
+    checkinTime: "10:00",
+    checkoutTime: "10:00",
+    petsAllowed: casa.reglas.mascotas,
     smokingAllowed: false,
     maximumAttendeeCapacity: casa.capacidad,
     sameAs,
@@ -58,10 +60,6 @@ export function lodgingBusinessLd() {
 
   if (casa.contacto.whatsapp) {
     data.telephone = `+${casa.contacto.whatsapp}`;
-  }
-
-  if (casa.reglas.checkOut) {
-    data.checkoutTime = casa.reglas.checkOut;
   }
 
   if (casa.dormitorios != null) {

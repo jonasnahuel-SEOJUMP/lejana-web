@@ -6,7 +6,7 @@ import parqueEntrada from "../assets/fotos/parque-nacional-entrada.jpg";
 
 const title = "Cómo llegar | Cabaña a 2 km del Parque Nacional Lago Puelo";
 const description =
-  "Ubicación de Lejana Casa de Montaña: a 2 km del Parque Nacional Lago Puelo, 3,2 km del centro, 16 km de El Bolsón y 145 km del aeropuerto de Bariloche.";
+  "Cómo llegar a Lejana Casa de Montaña desde Bariloche: Ruta 40 hasta El Bolsón (~130 km) y Ruta 16 hasta Lago Puelo (~11 km). A 2 km del Parque Nacional.";
 
 /** Preferir coordenadas exactas: la búsqueda por dirección en Google apunta mal. */
 const mapsQuery = casa.geo
@@ -85,48 +85,27 @@ const mapsLink =
           Ruta 16: unos {casa.distancias.ruta16m} m
         </li>
         <li class="border border-crema-oscura bg-crema/50 p-5">
-          El Bolsón:{" "}
-          {casa.distancias.elBolsonKm != null
-            ? `${casa.distancias.elBolsonKm} km`
-            : "TODO: confirmar distancia"}
+          El Bolsón: {casa.distancias.elBolsonKm} km
         </li>
         <li class="border border-crema-oscura bg-crema/50 p-5">
-          Aeropuerto de Bariloche:{" "}
-          {casa.distancias.aeropuertoBarilocheKm != null
-            ? `${casa.distancias.aeropuertoBarilocheKm} km`
-            : "TODO: confirmar distancia"}
+          Aeropuerto de Bariloche: {casa.distancias.aeropuertoBarilocheKm} km
         </li>
       </ul>
     </section>
 
-    <section class="mt-14 grid gap-10 md:grid-cols-2">
-      <div>
-        <h2 class="text-2xl md:text-3xl">Desde Bariloche</h2>
-        <p class="mt-3 text-tierra/90">
-          La forma habitual es llegar al aeropuerto de Bariloche y seguir por ruta hacia la
-          Comarca Andina hasta Lago Puelo. Son unos {casa.distancias.aeropuertoBarilocheKm} km
-          hasta la casa.
-        </p>
-        <p class="todo-banner mt-3">
-          TODO: confirmar tiempo de viaje estimado y tip de acceso final a la propiedad
-        </p>
-      </div>
-      <div>
-        <h2 class="text-2xl md:text-3xl">Desde El Bolsón</h2>
-        <p class="mt-3 text-tierra/90">
-          Desde El Bolsón se llega a Lago Puelo por la Comarca Andina. Lejana Casa de Montaña
-          queda a unos {casa.distancias.elBolsonKm} km, a {casa.distancias.parqueNacionalKm} km
-          del Parque Nacional.
-        </p>
-      </div>
+    <section class="mt-14" aria-labelledby="desde-bariloche">
+      <h2 id="desde-bariloche" class="text-2xl md:text-3xl">Desde Bariloche</h2>
+      <p class="mt-3 max-w-2xl text-tierra/90">
+        {casa.comoLlegarDesdeBariloche}
+      </p>
     </section>
 
     <section class="mt-14">
       <h2 class="text-2xl md:text-3xl">Acceso</h2>
       <p class="mt-3 max-w-2xl text-tierra/90">
         El acceso es por zona de bosque nativo, a unos {casa.distancias.ruta16m} m de la Ruta
-        16. La casa está en un claro (no es un patio cerrado). Se pueden dejar hasta 4 autos
-        al lado de la casa; no hay cochera techada.
+        16. Frondosos ejemplares de álamos y radales y otros árboles rodean la casa. Se
+        pueden dejar hasta 4 autos al lado de la casa; no hay cochera techada.
       </p>
     </section>
   </div>

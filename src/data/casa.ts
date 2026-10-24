@@ -37,16 +37,20 @@ export const casa = {
   camas: {
     dobles: 1,
     individuales: 3,
-    resumen: "1 cama doble y 3 individuales",
+    /** Queen = cama matrimonial (confirmado por anfitrión). */
+    resumen: "1 cama queen (matrimonial) y 3 individuales",
   },
+  /** Descripción de dormitorios (texto del anfitrión). */
+  dormitoriosDetalle:
+    "Hay dos dormitorios: uno con cama queen e hidromasaje para dos personas, en suite; el otro con tres camas individuales.",
   /** Bañera con hidromasaje interior, en suite en la habitación. */
   hidromasaje: {
     tipo: "banera_interior" as const,
     descripcion:
-      "Bañera con hidromasaje interior, en suite en la habitación.",
+      "Bañera con hidromasaje interior para dos personas, en suite en el dormitorio con cama queen.",
   },
   entorno:
-    "La casa está en un claro en medio del bosque nativo, sobre un terreno de 1.800 m², a unos 700 m de la Ruta 16, a mitad de camino entre el centro de Lago Puelo y el Parque Nacional. Hay espacio alrededor, pero no es un patio delimitado.",
+    "La casa está en un claro en medio del bosque nativo, sobre un terreno de 1.800 m², a unos 700 m de la Ruta 16, a mitad de camino entre el centro de Lago Puelo y el Parque Nacional. Frondosos ejemplares de álamos y radales y otros árboles rodean la casa.",
   quincho: {
     metrosCuadrados: 45,
     descripcion:
@@ -59,7 +63,14 @@ export const casa = {
     elBolsonKm: 16,
     aeropuertoBarilocheKm: 145,
     ruta16m: 700,
+    /** Tramo Bariloche → El Bolsón por Ruta 40 (indicaciones del anfitrión). */
+    barilocheElBolsonKm: 130,
+    /** Tramo El Bolsón → Lago Puelo por Ruta 16. */
+    elBolsonLagoPueloKm: 11,
   },
+  /** Cómo llegar desde Bariloche (texto del anfitrión). */
+  comoLlegarDesdeBariloche:
+    "La forma de llegar es desde Bariloche hasta El Bolsón por Ruta 40, aprox. 130 km. Luego, por Ruta 16 hasta Lago Puelo (11 km).",
   servicios: [
     "WiFi",
     "Cocina equipada (heladera, horno, cafetera, pava eléctrica)",
@@ -73,22 +84,29 @@ export const casa = {
     "Ropa de cama y toallas",
     "Lugar para dejar hasta 4 autos al lado de la casa (sin cochera techada)",
   ],
-  /** Confirmado por fotos del anfitrión: salamandra a leña en el living. */
-  calefaccion: "Salamandra a leña",
+  /**
+   * Confirmado por el anfitrión (oct 2026).
+   * “k” = kcal (potencia habitual de calefactores a gas).
+   */
+  calefaccion:
+    "Calefactor de 6000 kcal en el living, calefactor de 2500 kcal en cada dormitorio, artefacto eléctrico en el baño y salamandra a leña en el living",
   reglas: {
-    mascotas: false,
+    mascotas: true,
     fumar: false,
     fiestas: false,
     cunas: false,
-    checkInDesde: "15:00",
-    /** TODO: confirmar horario de check-out */
-    checkOut: null as string | null,
+    /** Horarios a coordinar con el huésped. */
+    checkInDesde: "10:00 o 17:00 (a coordinar)",
+    checkOut: "10:00 o 17:00 (a coordinar)",
   },
   /** TODO: confirmar formas de pago (Booking menciona solo efectivo) */
   formasDePago: null as string | null,
   /** TODO: confirmar precios por temporada y mínimo de noches */
   precios: null as string | null,
-  /** TODO: confirmar beneficio por reserva directa (no descuento vs plataformas) */
+  /**
+   * No publicar beneficio por reserva directa (pedido del anfitrión).
+   * Si existe, se habla solo con Lucía, no va en la web.
+   */
   beneficioReservaDirecta: null as string | null,
   contacto: {
     /** Solo dígitos con código país (wa.me). Confirmado: Lucía Parra. */
@@ -144,7 +162,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cuántas personas entran en Lejana Casa de Montaña?",
     respuesta:
-      "Entran hasta 5 personas. Hay 2 dormitorios, 1 cama doble y 3 individuales, y 1 baño, en una casa nueva de 120 m² sobre 1.800 m² de bosque nativo.",
+      "Entran hasta 5 personas. Hay 2 dormitorios: uno con cama queen (matrimonial) e hidromasaje para dos, en suite; el otro con tres camas individuales. Hay 1 baño, en una casa nueva de 120 m² sobre 1.800 m² de bosque nativo.",
   },
   {
     pregunta: "¿La cabaña está cerca del Parque Nacional Lago Puelo?",
@@ -154,18 +172,17 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cuáles son los horarios de check-in y check-out?",
     respuesta:
-      "El check-in es desde las 15:00. El horario exacto de check-out se confirma al reservar.",
-    pendiente: true,
+      "El check-in y el check-out son a las 10:00 o a las 17:00, a coordinar con el huésped.",
   },
   {
     pregunta: "¿Hay hidromasaje o jacuzzi?",
     respuesta:
-      "Sí: hay una bañera con hidromasaje interior, en suite en la habitación, con vista al entorno.",
+      "Sí: hay una bañera con hidromasaje interior para dos personas, en suite en el dormitorio con cama queen.",
   },
   {
     pregunta: "¿Tiene patio o quincho?",
     respuesta:
-      "No tiene un patio delimitado: la casa está en un claro en medio del bosque, con espacio alrededor. Sí tiene un quincho grande de 45 m² con parrilla y mesa para seis personas.",
+      "Frondosos ejemplares de álamos y radales y otros árboles rodean la casa. Sí tiene un quincho grande de 45 m² con parrilla y mesa para seis personas.",
   },
   {
     pregunta: "¿Hay espacio de trabajo o escritorio?",
@@ -174,12 +191,13 @@ export const faqs: FaqItem[] = [
   },
   {
     pregunta: "¿Qué calefacción tiene?",
-    respuesta: "Hay salamandra a leña en el living.",
+    respuesta:
+      "Tiene calefactor de 6000 kcal en el living, calefactor de 2500 kcal en cada dormitorio, artefacto eléctrico en el baño y salamandra a leña en el living.",
   },
   {
     pregunta: "¿Se aceptan mascotas?",
     respuesta:
-      "No se aceptan mascotas. Tampoco se fuma, no se hacen fiestas y no hay cunas disponibles.",
+      "Sí, se aceptan mascotas. No se fuma, no se hacen fiestas y no hay cunas disponibles.",
   },
   {
     pregunta: "¿A qué distancia está del centro de Lago Puelo?",
@@ -205,8 +223,7 @@ export const faqs: FaqItem[] = [
   {
     pregunta: "¿Cómo reservo?",
     respuesta:
-      "Podés consultar por WhatsApp para disponibilidad y reserva directa, o usar Airbnb y Booking si preferís las plataformas. Al reservar directo puede haber un beneficio (no un precio más bajo que en las plataformas); se confirma al escribir.",
-    pendiente: true,
+      "Podés consultar por WhatsApp para disponibilidad y reserva directa, o usar Airbnb y Booking si preferís las plataformas.",
   },
 ];
 

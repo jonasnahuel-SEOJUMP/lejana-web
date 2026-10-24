@@ -15,18 +15,18 @@ import exteriorPorche from "../assets/fotos/exterior-porche.jpg";
 
 const title = "La casa | Cabaña para 5 en Lago Puelo con quincho e hidromasaje";
 const description =
-  "Lejana Casa de Montaña: 120 m², 2 dormitorios, quincho de 45 m², hidromasaje en suite y salamandra. Casa nueva en bosque nativo, Lago Puelo.";
+  "Lejana Casa de Montaña: 120 m², 2 dormitorios (cama queen e hidromasaje en suite + 3 individuales), quincho de 45 m². Casa nueva en bosque nativo, Lago Puelo.";
 
 const espacios = [
   {
     image: dormitorioMatri,
-    alt: "Dormitorio con cama matrimonial",
-    label: "Dormitorio matrimonial",
+    alt: "Dormitorio con cama queen e hidromasaje en suite",
+    label: "Dormitorio queen con hidromasaje",
   },
   {
     image: dormitorioCucheta,
-    alt: "Dormitorio con cucheta y cama individual",
-    label: "Segundo dormitorio",
+    alt: "Dormitorio con tres camas individuales",
+    label: "Dormitorio con tres camas individuales",
   },
   {
     image: hidromasajeVista,
@@ -70,8 +70,7 @@ const espacios = [
       todo lo necesario para una estadía cómoda.
     </p>
     <p class="mt-3 max-w-2xl text-tierra/90">
-      {casa.quincho.descripcion} También hay bañera con hidromasaje en suite y{" "}
-      {casa.calefaccion?.toLowerCase()}.
+      {casa.quincho.descripcion} {casa.dormitoriosDetalle}
     </p>
 
     <div class="mt-10 overflow-hidden">
@@ -88,8 +87,8 @@ const espacios = [
     <section class="mt-14" aria-labelledby="espacios">
       <h2 id="espacios" class="text-2xl md:text-3xl">Espacios y camas</h2>
       <p class="mt-3 max-w-2xl text-tierra/90">
-        Hay {casa.dormitorios} dormitorios, {casa.camas.resumen} y {casa.banos} baño,
-        pensado para familias o parejas que buscan descanso. Tocá una foto para ampliarla.
+        {casa.dormitoriosDetalle} En total: {casa.camas.resumen} y {casa.banos} baño.
+        Tocá una foto para ampliarla.
       </p>
       <ul class="mt-6 grid list-none gap-4 p-0 sm:grid-cols-2">
         <li class="border border-crema-oscura bg-crema/50 p-5">
@@ -140,15 +139,12 @@ const espacios = [
       <div>
         <h2 class="text-2xl md:text-3xl">Reglas de la casa</h2>
         <p class="mt-3 text-tierra/90">
-          No se aceptan mascotas, no se fuma, no se hacen fiestas y no hay cunas.
+          Se aceptan mascotas. No se fuma, no se hacen fiestas y no hay cunas.
         </p>
         <ul class="mt-6 list-disc space-y-2 pl-5">
-          <li>Check-in desde las {casa.reglas.checkInDesde}</li>
-          <li>
-            Check-out:{" "}
-            {casa.reglas.checkOut ?? "TODO: confirmar horario de check-out"}
-          </li>
-          <li>Mascotas: no</li>
+          <li>Check-in: {casa.reglas.checkInDesde}</li>
+          <li>Check-out: {casa.reglas.checkOut}</li>
+          <li>Mascotas: sí</li>
           <li>Fumar: no</li>
           <li>Fiestas: no</li>
         </ul>
