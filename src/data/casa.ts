@@ -16,12 +16,13 @@ export const casa = {
     "Casa nueva en un claro de bosque nativo, a 2 km del Parque Nacional Lago Puelo, con quincho e hidromasaje para desconectar de verdad.",
   direccion: {
     calle: "El Zorzal 13030",
-    codigoPostal: "9211",
+    /** CPA confirmado por Andrea (oct 2026). */
+    codigoPostal: "U8431AAA",
     localidad: "Lago Puelo",
     provincia: "Chubut",
     pais: "Argentina",
     /** Línea completa para NAP / footer */
-    completa: "El Zorzal 13030, 9211 Lago Puelo, Chubut, Argentina",
+    completa: "El Zorzal 13030, U8431AAA Lago Puelo, Chubut, Argentina",
   },
   /**
    * Pin confirmado con el anfitrión: ubicación real de la cabaña (El Zorzal).
