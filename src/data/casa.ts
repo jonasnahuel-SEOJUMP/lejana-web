@@ -15,18 +15,18 @@ export const casa = {
   propuesta:
     "Casa nueva en un claro de bosque nativo, a 2 km del Parque Nacional Lago Puelo, con quincho e hidromasaje para desconectar de verdad.",
   direccion: {
-    calle: "El Cóndor 13030",
+    calle: "El Zorzal 13030",
     codigoPostal: "9211",
     localidad: "Lago Puelo",
     provincia: "Chubut",
     pais: "Argentina",
     /** Línea completa para NAP / footer */
-    completa: "El Cóndor 13030, 9211 Lago Puelo, Chubut, Argentina",
+    completa: "El Zorzal 13030, 9211 Lago Puelo, Chubut, Argentina",
   },
   /**
-   * Pin confirmado con el anfitrión (oct 2026): ubicación real de la cabaña.
-   * El listado de Google que aparece “del otro lado de la calle” es incorrecto;
-   * la ficha oficial de Google Maps todavía está pendiente de crear/corregir.
+   * Pin confirmado con el anfitrión: ubicación real de la cabaña (El Zorzal).
+   * El Cóndor es una calle perpendicular cercana; Google a veces etiqueta mal.
+   * Ficha Google: unificar nombre “Lejana Casa de Montaña” y dirección El Zorzal.
    */
   geo: { lat: -42.082524, lng: -71.601623 },
   superficieM2: 120,

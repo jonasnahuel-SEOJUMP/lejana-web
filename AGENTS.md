@@ -31,7 +31,7 @@ No publicar en la web beneficio por reserva directa; si existe, se habla solo co
 Fuente: sus publicaciones en Airbnb y Booking (octubre 2026). Lo marcado como TODO está pendiente de confirmar con mi tío.
 
 - Nombre oficial (usarlo SIEMPRE igual): Lejana Casa de Montaña
-- Dirección: El Cóndor 13030, 9211 Lago Puelo, Chubut, Argentina
+- Dirección: El Zorzal 13030, 9211 Lago Puelo, Chubut, Argentina
 - Superficie: 120 m². Casa nueva.
 - Capacidad: 5 personas. 1 baño. Camas: 1 queen (matrimonial) + 3 individuales.
 - Dormitorios: 2 (uno con cama queen e hidromasaje para dos, en suite; el otro con tres individuales)
