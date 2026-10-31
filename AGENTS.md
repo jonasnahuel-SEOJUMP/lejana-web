@@ -73,7 +73,7 @@ Búsquedas objetivo (usar de forma natural, sin repetir de más):
 ## Decisiones técnicas (ya tomadas)
 
 - Astro + Tailwind, sitio 100% estático, sin base de datos ni backend.
-- Hosting gratis en Cloudflare Pages. Dominio .com.ar propio (TODO: definir, idealmente lejana.com.ar).
+- Hosting gratis en Cloudflare (Workers). Dominio: https://cabañalejana.com.ar (NIC, titular Andrea Marín).
 - Idioma: español de Argentina (lang="es-AR"). La estructura queda preparada para sumar inglés después.
 - Todo el contenido editable (datos, textos, precios, preguntas frecuentes, links) en un solo archivo: `src/data/casa.ts`.
 - Fotos en `src/assets/fotos/`. Por ahora placeholders; después se reemplazan por las reales.

@@ -4,8 +4,8 @@
  */
 
 export const site = {
-  /** TODO: confirmar dominio definitivo (ideal lejana.com.ar) */
-  url: "https://lejana.com.ar",
+  /** Dominio en NIC: cabañalejana.com.ar (titular Andrea Marín). */
+  url: "https://cabañalejana.com.ar",
   lang: "es-AR",
   locale: "es_AR",
 } as const;

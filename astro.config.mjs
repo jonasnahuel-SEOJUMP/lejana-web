@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // TODO: cambiar site cuando el dominio .com.ar esté confirmado
 export default defineConfig({
-  site: "https://lejana.com.ar",
+  site: "https://cabañalejana.com.ar",
   vite: {
     plugins: [tailwindcss()],
   },
